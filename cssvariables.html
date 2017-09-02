@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css Variables</title>
+</head>
+<body>	
+
+		<h1>大家好，这个一个<span class="h1">标题</span></h1>
+		<div class="controls">
+			<label for="spacing">背景后面的空间：</label>
+			<input type="range" name="spacing"  min="10" max="200" value="10" data-sizing="px">
+
+			<label for="blur">虚化程度：</label>
+			<input type="range" name="blur" min="0" max="25" value="3" data-sizing="px">
+
+			<label for="base">背景颜色：</label>
+			<input type="color" name="base" value="#dcaddc">
+
+		</div>
+
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504347299000&di=436a85e236633c3eced53b98620e2992&imgtype=0&src=http%3A%2F%2Fimg.qqzhi.com%2Fupload%2Fimg_5_3163712707D1742949080_23.jpg">
+
+	
+</body>
+		<style type="text/css">
+			:root{
+				--base:#dca;
+				--spacing:10px;
+				--blur:3px;
+			}
+			
+
+			img{
+					padding: var(--spacing);
+					background-color: var(--base);
+					filter: blur(var(--blur));
+
+			}
+
+			.h1{
+				color: var(--base);
+			}
+
+		</style>
+
+
+		<!-- 下面是js啦哈哈哈 -->
+
+		<script type="text/javascript">
+			
+				const inputs = document.querySelectorAll('.controls input');
+
+
+				function handleUpdate(){
+					console.log(this.value);
+					const suffix = this.dataset.sizing || '';
+
+					document.documentElement.style.setProperty(`--${this.name}`,this.value + suffix);
+
+
+				}
+
+
+				inputs.forEach(input => input.addEventListener('change',handleUpdate));
+					inputs.forEach(input => input.addEventListener('mousemove',handleUpdate));
+
+
+
+		</script>
+
+</html>
